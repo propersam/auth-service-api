@@ -8,7 +8,7 @@ from django.contrib.auth.models import BaseUserManager
 
 class UserProfileManager(BaseUserManager):
     """ Helps django work with the custom user model below """
-    def create_user(self, email, username, password=None, firstName, lastName):
+    def create_user(self, email, username, password=None):
         """ Creates a new User Profile object """
         
         # check that email was provided
@@ -16,22 +16,21 @@ class UserProfileManager(BaseUserManager):
             raise ValueError("Users must have an Email address")
         
         email = self.normalize_email(email)
-        user = self.model(email=email, username=username,
-         firstName=firstName, lastName=lastName)
+        user = self.model(email=email, username=username)
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, username, password, firstName, lastName):
+    def create_superuser(self, email, username, password):
         """ Create and saves a new superuser with the given details """
 
-        user = self.create_user(email, username, password, firstName, lastName)
+        user = self.create_user(email, username, password)
 
         user.is_superuser = True
         user.is_staff = True
-        
+
         user.save(using=self._db)
 
         return user
@@ -77,7 +76,7 @@ class Organisation(models.Model):
      Model containing User Organisation
     """
     name = models.CharField('name of organisation', max_length=255, unique=True)
-    size = models.IntegerField('Organisation Size', max_length=6)
+    size = models.IntegerField('Organisation Size')
     address = models.TextField('Organisation Address Location')
 
 
