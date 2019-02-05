@@ -1,3 +1,4 @@
 {
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "/home/propersam/.virtualenvs/sureedu.service.auth-I5dJyMSw/bin/python"
 }
