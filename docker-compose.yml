@@ -7,7 +7,7 @@ services:
       # MYSQL_USER: sureedu
       # MYSQL_PASSWORD: sureedu
       #MYSQL_ROOT_PASSWORD: sureedu
-      POSTGRES_DB: sureedurecords
+      POSTGRES_DB: sureeduauth
       POSTGRES_USER: sureedu
       POSTGRES_PASSWORD: sureedu
     restart: always
@@ -29,7 +29,7 @@ services:
 
   app:
     environment:
-      DATABASE_URL: postgres://sureedu:sureedu@db/sureedurecords
+      DATABASE_URL: postgres://sureedu:sureedu@db/sureeduauth
       REDIS_URL: redis://redis
       DJANGO_MANAGEPY_MIGRATE: 'on'
     build: .
