@@ -19,9 +19,6 @@ DATABASES = {
         'PASSWORD': 'sureedu',
         'HOST': 'db', # OR any host for the database
         'PORT': 5432,
-        'TEST': {
-            'NAME': 'testdatabase',
-        },
     }
 }
 
