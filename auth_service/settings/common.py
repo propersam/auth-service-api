@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_jwt',
     'corsheaders',
 
 ]
@@ -39,9 +40,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    
-
 ]
+
+ROOT_URLCONF = 'auth_service.urls'
 
 CORS_ALLOW_HEADERS = (
     'accept',

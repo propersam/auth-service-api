@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['testserver', '*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-         'DEFAULT-CHARACTER-SET': 'utf8',
+        'DEFAULT-CHARACTER-SET': 'utf8',
         'NAME': 'sureeduauth',
         'USER': 'sureedu',
         'PASSWORD': 'sureedu',

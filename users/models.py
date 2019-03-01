@@ -6,6 +6,37 @@ from django.contrib.auth.models import BaseUserManager
 
 # Create your models here.
 
+class Organisation(models.Model):
+    """
+     Model containing User Organisation
+    """
+    name = models.CharField('Name of Organisation', max_length=255, unique=True)
+    size = models.IntegerField('Organisation Size')
+    address = models.TextField('Organisation Address Location', null=True, blank=True)
+    logo = models.ImageField('Upload Organisation Logo', null=True)
+    email = models.EmailField('Company email Address', blank=True, unique=True)
+    website = models.CharField('website of the Company',max_length=50, blank=True, null=True)
+    company_desc = models.TextField('Short Description About Company', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Role(models.Model):
+    """ 
+      Model containing all different roles of any user
+    """
+    name = models.CharField('Role name', max_length=50)
+    desc = models.TextField('Role Description')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
 class UserProfileManager(BaseUserManager):
     """ Helps django work with the custom user model below """
     def create_user(self, email, username, password=None):
@@ -36,7 +67,6 @@ class UserProfileManager(BaseUserManager):
         return user
 
 
-
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """
       Add Additional fields for users here
@@ -45,7 +75,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     lastName = models.CharField('User Last Name', max_length=50)
     username = models.CharField("User's login username", max_length=50)
     email = models.EmailField("User Email", max_length=125, unique=True)
-    # organisation = models.ForeignKey(Organisation, related_name='The User Organisation',on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, related_name='user_organisation', on_delete=models.CASCADE, blank=True, null=True)
+    roles = models.ManyToManyField(Role)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -71,20 +102,4 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Organisation(models.Model):
-    """
-     Model containing User Organisation
-    """
-    name = models.CharField('name of organisation', max_length=255, unique=True)
-    size = models.IntegerField('Organisation Size')
-    address = models.TextField('Organisation Address Location')
-
-
-# class Role(models.Model):
-#     """ 
-#       Model containing all different roles of any user
-#     """
-#     name = models.CharField('role name', max_length=50)
-#     desc = models.TextField('Role Description')
-#     created_at = models.DateTimeField(auto_now_add=True)
 
