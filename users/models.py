@@ -16,7 +16,7 @@ class Organisation(models.Model):
     logo = models.ImageField('Upload Organisation Logo', null=True)
     email = models.EmailField('Company email Address', blank=True, unique=True)
     website = models.CharField('website of the Company',max_length=50, blank=True, null=True)
-    company_desc = models.TextField('Short Description About Company', blank=True, null=True)
+    about_company = models.TextField('Short Description About Company', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -28,7 +28,7 @@ class Role(models.Model):
     """ 
       Model containing all different roles of any user
     """
-    name = models.CharField('Role name', max_length=50)
+    name = models.CharField('Role name', max_length=50, unique=True)
     desc = models.TextField('Role Description')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -77,6 +77,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField("User Email", max_length=125, unique=True)
     organisation = models.ForeignKey(Organisation, related_name='user_organisation', on_delete=models.CASCADE, blank=True, null=True)
     roles = models.ManyToManyField(Role)
+    contact_num = models.CharField("User's phone number", max_length=17, unique=True, null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
