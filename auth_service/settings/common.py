@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_jwt',
     'corsheaders',
 
 ]
@@ -39,9 +40,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    
-
 ]
+
+ROOT_URLCONF = 'auth_service.urls'
 
 CORS_ALLOW_HEADERS = (
     'accept',
@@ -123,6 +124,9 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 REST_FRAMEWORK = {
      # Update later
@@ -132,7 +136,8 @@ REST_FRAMEWORK = {
 
         #'rest_framework.permissions.IsAdmin'
         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        #'rest_framework.permissions.IsAuthenticated',
     ],
     'TEST_REQUEST_RENDERER_CLASSES' : [
         'rest_framework.renderers.MultiPartRenderer',
