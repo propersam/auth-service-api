@@ -124,6 +124,9 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 REST_FRAMEWORK = {
      # Update later
@@ -133,7 +136,8 @@ REST_FRAMEWORK = {
 
         #'rest_framework.permissions.IsAdmin'
         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        #'rest_framework.permissions.IsAuthenticated',
     ],
     'TEST_REQUEST_RENDERER_CLASSES' : [
         'rest_framework.renderers.MultiPartRenderer',

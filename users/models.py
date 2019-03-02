@@ -10,10 +10,15 @@ class Organisation(models.Model):
     """
      Model containing User Organisation
     """
+    SIZE_CHOICES=(
+        (1, '1 to 10'),
+        (2, '11 to 50'),
+        (3, '50 and Above')
+    )
     name = models.CharField('Name of Organisation', max_length=255, unique=True)
-    size = models.IntegerField('Organisation Size')
+    size = models.IntegerField('Organisation Size', choices=SIZE_CHOICES)
     address = models.TextField('Organisation Address Location', null=True, blank=True)
-    logo = models.ImageField('Upload Organisation Logo', null=True)
+    logo = models.ImageField('Upload Organisation Logo', upload_to='logos', null=True)
     email = models.EmailField('Company email Address', blank=True, unique=True)
     website = models.CharField('website of the Company',max_length=50, blank=True, null=True)
     about_company = models.TextField('Short Description About Company', blank=True, null=True)
@@ -78,6 +83,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     organisation = models.ForeignKey(Organisation, related_name='user_organisation', on_delete=models.CASCADE, blank=True, null=True)
     roles = models.ManyToManyField(Role)
     contact_num = models.CharField("User's phone number", max_length=17, unique=True, null=True, blank=True)
+    profile_pics = models.ImageField("Upload User's Profile Picture", upload_to='profile_pics/%Y/%m/%d', null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

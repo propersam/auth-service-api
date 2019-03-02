@@ -14,5 +14,5 @@ class RoleViewSet(viewsets.ModelViewSet):
 	serializer_class = RoleSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-	queryset = models.User.objects.all().order_by("-updated_at")
+	queryset = models.UserProfile.objects.all()
 	serializer_class = UserSerializer
