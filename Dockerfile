@@ -8,8 +8,6 @@ RUN apt-get -y install python3-pip \
         python3-venv apache2 \ 
         libapache2-mod-wsgi-py3 virtualenvwrapper
 
-ADD requirements.txt /requirements.txt
-
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 COPY sureedu_auth.conf /etc/apache2/sites-available/000-default.conf
 
@@ -45,4 +43,4 @@ ENV DJANGO_SETTINGS_MODULE=auth_service.settings.production
 #CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
 
 # start Apache2
-CMD ["/usr/sbin/apache2ctl", "-k", ADD requirements.txt /requirements.txt"start"]
+CMD ["/usr/sbin/apache2ctl", "-k", "start"]
