@@ -17,7 +17,7 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
-RUN virtualenv venv /code/venv && source /code/venv/bin/activate
+RUN virtualenv --python=python3 /code/venv && source /code/venv/bin/activate
 
 RUN pip install --no-cache-dir -r requirements.txt
 
