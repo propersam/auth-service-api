@@ -35,7 +35,7 @@ services:
     build: .
     # image: registry.gitlab.com/suretradebsl/sureedu-sms/sureedu.service.recordspropersam/sureedu-records
     volumes:
-      - .:/usr/src/app
+   #   - .:/usr/src/app
       - .:/code
     links:
       - db:db
