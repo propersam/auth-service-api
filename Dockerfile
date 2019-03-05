@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade
 
 RUN apt-get -y install python3-pip \
         python3-venv apache2 \ 
-        libapache2-mod-wsgi-py3
+        libapache2-mod-wsgi-py3 virtualenvwrapper
 
 ADD requirements.txt /requirements.txt
 
@@ -17,9 +17,7 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
-RUN python3 -m venv /code/venv
-
-RUN source /code/venv/bin/activate
+RUN mkvirtualenv venv && workon venv
 
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -47,4 +45,4 @@ ENV DJANGO_SETTINGS_MODULE=auth_service.settings.production
 #CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
 
 # start Apache2
-CMD ["/usr/sbin/apache2ctl", "-k", "start"]
+CMD ["/usr/sbin/apache2ctl", "-k", ADD requirements.txt /requirements.txt"start"]
