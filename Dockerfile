@@ -44,3 +44,4 @@ ENV DJANGO_SETTINGS_MODULE=auth_service.settings.production
 
 # start Apache2
 CMD ["/usr/sbin/apache2ctl", "-k", "start"]
+#CMD ["bash", "-c", "service apache2 start"]
