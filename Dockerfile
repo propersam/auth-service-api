@@ -24,7 +24,7 @@ COPY src/requirements.txt /code/
 RUN /code/venv/bin/pip install --no-cache-dir -r /code/requirements.txt
 
 ADD . /code/
-WORKDIR /code/src
+WORKDIR /code
 # Nginx will listen on this port
 EXPOSE 80 443
 
