@@ -21,7 +21,7 @@ RUN mkdir /code
 RUN virtualenv --python=python3 /code/venv
 
 COPY src/requirements.txt /code/
-RUN /code/venv/pip install --no-cache-dir -r /code/requirements.txt
+RUN /code/venv/bin/pip install --no-cache-dir -r /code/requirements.txt
 
 ADD . /code/
 WORKDIR /code/src
