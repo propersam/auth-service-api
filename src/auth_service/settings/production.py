@@ -35,9 +35,10 @@ CACHES = {
     # },
 }
 
+
 BUGSNAG = {
     'api_key': '99ba4860115224b51cb380ec771e2450',
-    'project_root': '/code/src,
+    'project_root': '/code/src'
 }
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
