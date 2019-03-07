@@ -10,9 +10,9 @@ RUN apt-get -y install python3-pip \
         virtualenv
 
 # setup all the configfiles
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY sureedu_auth.conf /etc/nginx/sites-available/default
-COPY supervisor-app.conf /etc/supervisor/conf.d/
+ADD supervisor-app.conf /etc/supervisor/conf.d/
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 
 RUN mkdir /code/src
@@ -21,7 +21,7 @@ WORKDIR /code/src
 RUN virtualenv --python=python3 /code/venv
 
 COPY src/requirements.txt /code/src/
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN /code/venv/pip install --no-cache-dir -r requirements.txt
 
 ADD . /code/
 
