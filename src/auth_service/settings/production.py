@@ -1,6 +1,6 @@
 from auth_service.settings.common import *
 
-DEBUG = False
+DEBUG = True
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '(k)!m@k7aadsj27o@)vqb1s!93x$fksq7+m!6_r@1x%7%4l*bq')
 

@@ -103,10 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-BUGSNAG = {
-    'api_key': '99ba4860115224b51cb380ec771e2450',
-    'project_root': '/code/src'
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
