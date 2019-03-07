@@ -31,7 +31,8 @@ AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
+    'bugsnag.django.middleware.BugsnagMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
