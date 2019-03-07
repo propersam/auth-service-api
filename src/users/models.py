@@ -18,7 +18,7 @@ class Organisation(models.Model):
     name = models.CharField('Name of Organisation', max_length=255, unique=True)
     size = models.IntegerField('Organisation Size', choices=SIZE_CHOICES)
     address = models.TextField('Organisation Address Location', null=True, blank=True)
-    logo = models.ImageField('Upload Organisation Logo', upload_to='logos', null=True)
+    logo = models.ImageField('Upload Organisation Logo', upload_to='logos', null=True, blank=True)
     email = models.EmailField('Company email Address', blank=True, unique=True)
     website = models.CharField('website of the Company',max_length=50, blank=True, null=True)
     about_company = models.TextField('Short Description About Company', blank=True, null=True)
