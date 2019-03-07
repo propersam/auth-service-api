@@ -15,18 +15,18 @@ COPY sureedu_auth.conf /etc/nginx/sites-available/default
 
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 
-RUN mkdir /code/src
-WORKDIR /code/src
+RUN mkdir /code
+
 
 RUN virtualenv --python=python3 /code/venv
 
-COPY src/requirements.txt /code/src/
-RUN /code/venv/pip install --no-cache-dir -r requirements.txt
+COPY src/requirements.txt /code/
+RUN /code/venv/pip install --no-cache-dir -r /code/requirements.txt
 
 ADD . /code/
-
+WORKDIR /code/src
 # Nginx will listen on this port
-EXPOSE 80
+EXPOSE 80 443
 
 # uWSGI will listen on this port
 # EXPOSE 8000
