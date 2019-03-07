@@ -36,7 +36,7 @@ CACHES = {
 }
 
 BUGSNAG = {
-    'api_key': os.environ.get('BUGSNAG_API_KEY', '99ba4860115224b51cb380ec771e2450'),
+    'api_key': '99ba4860115224b51cb380ec771e2450',
     'project_root': '/code/src,
 }
 
