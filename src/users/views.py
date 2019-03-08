@@ -16,3 +16,16 @@ class RoleViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = models.UserProfile.objects.all()
 	serializer_class = UserSerializer
+
+	def create(self, validated_data):
+		user = models.UserProfile(validated_data)
+		user.set_password(validated_data['password'])
+		user.save()
+		return user
+
+	def update(self, instance, validated_data):
+		for f in UserSerializer.Meta.fields + UserSerializer.Meta.write_only_fields:
+			set_attr(instance, f, validated_data[f])
+		instance.set_password(validated_data['password'])
+		instance.save()
+		return instance
