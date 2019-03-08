@@ -24,26 +24,28 @@ class UserSerializer(serializers.ModelSerializer):
 		allow_null= True,
 	)
 
-	organisation_id = serializers.PrimaryKeyRelatedField(
+	organisation = serializers.PrimaryKeyRelatedField(
 		many = False,
 		queryset = models.Organisation.objects.all(),
 		read_only = False
 	)
 
-	def create(self, validated_data):
-		user = models.UserProfile(validated_data)
-		user.set_password(validated_data['password'])
-		user.save()
-		return user
-
-	def update(self, instance, validated_data):
-		for f in UserSerializer.Meta.fields + UserSerializer.Meta.write_only_fields:
-			set_attr(instance, f, validated_data[f])
-		instance.set_password(validated_data['password'])
-		instance.save()
-		return instance
-
 	class Meta:
 		model = models.UserProfile
-		fields = ('id', 'firstName', 'lastName', 'username','password', 'email', 'contact_num', 'roles', 'organisation_id')
+		fields = ('id', 'firstName', 'lastName', 'username','password', 'email', 'contact_num', 'roles', 'organisation')
 		extra_kwargs = {'password': {'write_only': True}}
+
+	# def create(self, validated_data):
+	# 	user = models.UserProfile(validated_data)
+	# 	user.set_password(validated_data['password'])
+	# 	user.save()
+	# 	return user
+
+	# def update(self, instance, validated_data):
+	# 	for f in UserSerializer.Meta.fields + UserSerializer.Meta.write_only_fields:
+	# 		set_attr(instance, f, validated_data[f])
+	# 	instance.set_password(validated_data['password'])
+	# 	instance.save()
+	# 	return instance
+
+	
