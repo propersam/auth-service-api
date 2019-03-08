@@ -30,6 +30,19 @@ class UserSerializer(serializers.ModelSerializer):
 		read_only = False
 	)
 
+	def create(self, validated_data):
+        user = get_user_model(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+    def update(self, instance, validated_data):
+        for f in UserSerializer.Meta.fields + UserSerializer.Meta.write_only_fields:
+            set_attr(instance, f, validated_data[f])
+        instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
+
 	class Meta:
 		model = models.UserProfile
 		fields = ('id', 'firstName', 'lastName', 'username','password', 'email', 'contact_num', 'roles', 'organisation_id')
