@@ -24,11 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
 		allow_null= True,
 	)
 
-	organisation = serializers.PrimaryKeyRelatedField(
-		many = False,
-		queryset = models.Organisation.objects.all(),
-		read_only = False
-	)
+	# organisation = serializers.PrimaryKeyRelatedField(
+	# 	many = False,
+	# 	queryset = models.Organisation.objects.all(),
+	# 	read_only = False
+	# )
 
 	class Meta:
 		model = models.UserProfile

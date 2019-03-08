@@ -14,6 +14,5 @@ class RoleViewSet(viewsets.ModelViewSet):
 	serializer_class = RoleSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-	lookup_field='email'
 	queryset = models.UserProfile.objects.all()
 	serializer_class = UserSerializer
