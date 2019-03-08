@@ -82,7 +82,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField("User Email", max_length=125, unique=True)
     organisation = models.ForeignKey(Organisation, related_name='user_organisation', on_delete=models.CASCADE, blank=True, null=True)
     roles = models.ManyToManyField(Role)
-    contact_num = models.CharField("User's phone number", max_length=17, unique=True, null=True, blank=True)
+    contact_num = models.CharField("User's phone number", max_length=17, null=True, blank=True)
     profile_pics = models.ImageField("Upload User's Profile Picture", upload_to='profile_pics/%Y/%m/%d', null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
