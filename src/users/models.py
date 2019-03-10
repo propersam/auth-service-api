@@ -79,6 +79,11 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 	"""
 	  Add Additional fields for users here
 	"""
+	GENDER_CHOICES = (
+		('m', 'male'),
+		('f', 'female'),
+		('o', 'others'),
+	)
 	# sys_id = models.AutoField(primary_key=True, blank=True)
 	firstName = models.CharField('User First Name', max_length=50)
 	lastName = models.CharField('User Last Name', max_length=50)
@@ -88,6 +93,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 	roles = models.ManyToManyField(Role, related_name='user')
 	contact_num = models.CharField("User's phone number", max_length=17, null=True, blank=True)
 	profile_pics = models.ImageField("Upload User's Profile Picture", upload_to='profile_pics/%Y/%m/%d', null=True, blank=True)
+	gender = models.CharField("User's Gender", max_length=5, choices=GENDER_CHOICES, default='m')
 
 	is_active = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
