@@ -2,7 +2,7 @@ FROM python:3.5
 
 # Copy in your requirements file
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get -y update && apt-get -y upgrade
 
 RUN apt-get -y install python3-pip \
         python3-venv nginx \ 
