@@ -17,6 +17,7 @@ class RoleSerializer(serializers.ModelSerializer):
 		model = models.Role
 		fields = ('id', 'name', 'desc', 'created_at', 'updated_at')
 
+
 class UserSerializer(serializers.ModelSerializer):
 	roles = serializers.SlugRelatedField(
 		many=True,
@@ -28,7 +29,8 @@ class UserSerializer(serializers.ModelSerializer):
 				
 	class Meta:
 		model = models.UserProfile
-		fields = ('id', 'firstName','password' ,'lastName', 'username','password', 'email', 'contact_num', 'roles', 'organisation')
+		fields = ('id', 'firstName', 'lastName','password', 'username', 'email', 'contact_num', 'roles', 'organisation')
+		# read_only_fields = ('password','email')
 		extra_kwargs = {'password': {'write_only': True}}
 
 
@@ -56,3 +58,18 @@ class UserSerializer(serializers.ModelSerializer):
 		instance.save()
 			
 		return instance
+
+# class PasswordSerializer(serializers.ModelSerializer):
+# 	# roles = serializers.SlugRelatedField(
+# 	# 	many=True,
+# 	# 	slug_field='name',
+# 	# 	queryset = models.Role.objects.all(),
+# 	# 	allow_null= True,
+# 	# )
+
+# 	class Meta:
+# 		model = models.UserProfile
+# 		fields = ('password', )
+# 		exclude = ('id', 'firstName', 'lastName', 'username', 'email', 'contact_num', 'roles', 'organisation')
+
+# 		# extra_kwargs = {'password': {'write_only': True}}

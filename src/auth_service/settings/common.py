@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'users.UserProfile'
 AUTHENTICATION_BACKENDS = (
+	'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
 	'users.backends.MyAuthBackend',
 	'django.contrib.auth.backends.ModelBackend',
 )
